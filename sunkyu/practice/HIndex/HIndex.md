@@ -1,0 +1,37 @@
+# [H-Index](https://school.programmers.co.kr/learn/courses/30/lessons/42747)
+
+## 문제 설명
+
+- H-Index는 과학자의 생산성과 영향력을 나타내는 지표
+- 어느 과학자의 H-Index를 난타내는 값인 h를 구하려고 합니다.
+  - 어떤 과학자가 발표한 논문 n편 중, h번 이상 인용된 논문이 h편 이상이고
+  - 나머지 논문이 h편 이하 인용되었다면 h의 최댓값이 이 과학자의 H-Index입니다.
+- 어떤 과학자가 발표한 논문의 인용 횟수를 담은 배열 citations가 매개변수로 주어질 때,
+- 이 과학자의 H-Index를 return 하도록 solution 함수를 작성해주세요
+
+## 제한사항
+
+- 과학자가 발표한 논문의 수는 1편 이상 1,000편 이하입니다.
+- 논문별 인용 횟수는 0회 이상 10,000회 이하입니다.
+
+## 입출력 예
+
+| citations       | return |
+|-----------------|--------|
+| [3, 0, 6, 1, 5] | 3      |
+
+## 풀이 아이디어
+
+- 내림차순으로 리스트를 정렬하고 나서
+- 큰수부터 차례로 비교하여 값보다 인덱스 값이 크면 리턴해준다
+
+```python
+def solution(citations):
+    citations.sort(reverse=True)
+    
+    for i in range(len(citations)):
+        if citations[i] < i + 1:
+            return i
+    return len(citations)
+```
+
